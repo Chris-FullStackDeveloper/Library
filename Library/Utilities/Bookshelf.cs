@@ -84,7 +84,7 @@ namespace Library.Utilities
                         Console.WriteLine("Write a rating to search... ");
                         int customRatingToSearch = int.Parse(Console.ReadLine());
 
-                        var customRatingSearch = books.OrderBy(b => b.Rating.Equals(customRatingToSearch).ToString());
+                        var customRatingSearch = books.Where(b => b.Rating == customRatingToSearch);
 
                         foreach (var book in customRatingSearch)
                         {
@@ -111,11 +111,11 @@ namespace Library.Utilities
                         int customGenreToSearch = int.Parse(Console.ReadLine());
                         //string myEnumValue = Enum.GetName(typeof (Genres), customGenreToSearch);
 
-                        var customGenreSearch = books.OrderBy(b => b.Genre = (Genres)customGenreToSearch).ToList();
-                        if (customGenreSearch.Count == 0) { Console.WriteLine("Sorry, this title is currently unavailable"); }
+                        var customGenreSearch = books.Where(b => b.Genre == (Genres)customGenreToSearch).ToList();
+                        if (customGenreSearch.Count == 0) { Console.WriteLine("Sorry, there is no book available in the selected genre"); }
                         else
                         {
-                            foreach (var book in books)
+                            foreach (var book in customGenreSearch)
                             {
                                 Console.WriteLine($"\nBook sorted:\nTitle: {book.Title}\nAuthor: {book.Author}\nGenre: {book.Genre}\nLore: {book.Lore}\nRating: {book.Rating}/5");
                             }
@@ -124,9 +124,9 @@ namespace Library.Utilities
                         break;
 
                     default:
-                        if (choice >= 1 || choice <= 4)
+                        if (choice < 0 || choice > 4)
                         {
-                            Console.WriteLine("Choose a number between 1 and 4 please");
+                            Console.WriteLine("Choose a number between 0 and 4 please");
                         }
                         else if(choice == 0)
                         {
