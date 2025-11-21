@@ -27,7 +27,7 @@ namespace Library
             books.Add(new Book{ Title = title, Author = author, Genre = genre, Lore = lore, Rating = rating });
 
             bookshelf.ShowAllBooks(books);
-
+            bookshelf.SortBooksBy(books);
 
         }
     }
