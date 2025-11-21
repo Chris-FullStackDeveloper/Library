@@ -2,7 +2,7 @@
 using Library.Utilities;
 using System.Reflection;
 
-namespace Library
+namespace Library.Main
 {
     public class Program
     {

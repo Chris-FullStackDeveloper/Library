@@ -70,12 +70,12 @@ namespace Library.Utilities
                                           .OrderBy(b => b.Author)
                                           .ToList();
 
-                        Console.WriteLine("Write a title to search... ");
+                        Console.WriteLine("Write an author name to search... ");
                         string customAuthorToSearch = Console.ReadLine();
 
                         var customAuthorSearch = books.Where(b => b.Author.Equals(customAuthorToSearch, StringComparison.OrdinalIgnoreCase)).ToList();
 
-                        if (customAuthorSearch.Count == 0) { Console.WriteLine("Sorry, this title is currently unavailable"); }
+                        if (customAuthorSearch.Count == 0) { Console.WriteLine("Sorry, there isn't any book with that author here"); }
                         else
                         {
                             foreach (var book in customAuthorSearch)
@@ -94,7 +94,9 @@ namespace Library.Utilities
                         Console.WriteLine("Write a rating to search... ");
                         int customRatingToSearch = int.Parse(Console.ReadLine());
 
-                        var customRatingSearch = books.Where(b => b.Rating == customRatingToSearch);
+                        var customRatingSearch = books.Where(b => b.Rating == customRatingToSearch).ToList();
+
+                        if (customRatingSearch.Count == 0) { Console.WriteLine("Sorry, there isn't any book with that author here"); }
 
                         foreach (var book in customRatingSearch)
                         {
