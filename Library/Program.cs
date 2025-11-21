@@ -4,11 +4,13 @@ using System.Reflection;
 
 namespace Library
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            Bookshelf bookshelf = new Bookshelf();
             List<Book> books = new List<Book>();
+
             Console.WriteLine("Welcome to the Library! Please add a book:");
             Console.Write("Title: ");
             string title = Console.ReadLine();
@@ -24,10 +26,9 @@ namespace Library
 
             books.Add(new Book{ Title = title, Author = author, Genre = genre, Lore = lore, Rating = rating });
 
-            foreach (var book in books)
-            {
-                Console.WriteLine($"\nBook Added:\nTitle: {book.Title}\nAuthor: {book.Author}\nGenre: {book.Genre}\nLore: {book.Lore}\nRating: {book.Rating}/5");
-            }
+            bookshelf.ShowAllBooks(books);
+
+
         }
     }
 }
