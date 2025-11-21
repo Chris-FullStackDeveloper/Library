@@ -8,27 +8,35 @@ namespace Library
     {
         static void Main(string[] args)
         {
+            #region Initializations elements
             Bookshelf bookshelf = new Bookshelf();
             List<Book> books = new List<Book>();
+            int choice;
+            #endregion
 
-            Console.WriteLine("Welcome to the Library! Please add a book:");
-            Console.Write("Title: ");
-            string title = Console.ReadLine();
-            Console.Write("Author: ");
-            string author = Console.ReadLine();
-            Console.Write("Genre (Action, Adventure, Comedy, Drama, Fantasy, Horror, Mystery, Romance, SciFi): ");
-            string genreInput = Console.ReadLine();
-            Genres genre = (Genres)Enum.Parse(typeof(Genres), genreInput, true);
-            Console.Write("Lore: ");
-            string lore = Console.ReadLine();
-            Console.Write("Rating (1-5): ");
-            int rating = int.Parse(Console.ReadLine());
+            do
+            {
+                // Menù d'interazione
+                Console.WriteLine("0) Exit");
+                Console.WriteLine("1) Add a book");
+                Console.WriteLine("2) Show all books available");
+                Console.WriteLine("3) Sort books");
+                choice = int.Parse(Console.ReadLine());
 
-            books.Add(new Book{ Title = title, Author = author, Genre = genre, Lore = lore, Rating = rating });
-
-            bookshelf.ShowAllBooks(books);
-            bookshelf.SortBooksBy(books);
-
+                switch (choice)
+                {
+                    case 1:
+                        bookshelf.AddBook(books);
+                        break;
+                    case 2:
+                        bookshelf.ShowAllBooks(books);
+                        break;
+                    case 3:
+                        bookshelf.SortBooksBy(books);
+                        break;
+                }
+            } while (choice != 0);
         }
     }
 }
+

@@ -11,3 +11,8 @@ Proprietà del mio libro:
 - Genere
 - Trama
 - Valutazione
+
+Metodi:
+Il metodo SortBooksBy gestisce la logica dell'ordinamento, dove all'utente viene data la possibilità di cercare ed ordinare uno o più libri in base alle proprietà dello stesso (titolo, valutazione ecc...).
+ShowAllBooks mostra tutti i libri presenti in libreria.
+AddBook permette all'utente di agigungere n libri.
