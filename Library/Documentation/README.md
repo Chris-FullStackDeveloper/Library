@@ -19,4 +19,4 @@ AddBook permette all'utente di aggiungere n libri.
 
 
 Milestone prossima sessione:
-- Fare in modo che l'utente possa aggiungere più di un genere in un libro
+- Fare in modo che l'utente possa aggiungere più di un genere in un libro, quindi la mia classe "Genre" che attualmente è di tipo enum, la farò diventare una lista [COMPLETATO]

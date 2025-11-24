@@ -1,33 +1,84 @@
 ﻿using Library.Entities;
+using System.Linq;
 
 namespace Library.Utilities
 {
     public class Bookshelf
     {
+        List<Genres> genres = new List<Genres>();
+
         public void AddBook(List<Book> books)
         {
             Console.WriteLine("Welcome to the Library! Please add a book:");
 
+            // TITOLO
             Console.Write("Title: ");
             string title = Console.ReadLine();
+
+            // AUTORE
             Console.Write("Author: ");
             string author = Console.ReadLine();
-            Console.Write("Genre (Action, Adventure, Comedy, Drama, Fantasy, Horror, Mystery, Romance, SciFi): ");
+
+            // GENERI
+            Console.Write("Genre (Action, Adventure, Comedy, Drama, Fantasy, Horror, Mystery, Romance, SciFi), or multiple genres separated by ',': ");
             string genreInput = Console.ReadLine();
-            Genres genre = (Genres)Enum.Parse(typeof(Genres), genreInput, true);
+
+            //foreach (var g in genreInput.Split(',', StringSplitOptions.RemoveEmptyEntries))
+            //{
+            //    // Controllo che l'utente inserisca un genere valido, ovvero, che coincida con i valori che la classe enum "Genres"
+            //    // restituendo un valore di tipo Enum da poter inserire successivamente nell'oggetto Book
+            //    // Utilizzo il TryParse per non far crashare il programma con il Parse
+            //    if (Enum.TryParse<Genres>(g.Trim(), true, out Genres parsed))
+            //    {
+            //        genres.Add(parsed);
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"Genere sconosciuto: {g}");
+            //    }
+            //}
+
+            foreach (var g in genreInput.Split(','))
+            {
+                string cleaned = g.Trim();
+
+                // Ignora TUTTE le stringhe vuote o fatte solo di spazi
+                if (string.IsNullOrWhiteSpace(cleaned))
+                    continue;
+
+                if (Enum.TryParse<Genres>(cleaned, true, out Genres parsed))
+                {
+                    genres.Add(parsed);
+                }
+                else
+                {
+                    Console.WriteLine($"Genere sconosciuto: {cleaned}");
+                }
+            }
+
+            // TRAMA
             Console.Write("Lore: ");
             string lore = Console.ReadLine();
+
+            // VALUTAZIONE
             Console.Write("Rating (1-5): ");
             int rating = int.Parse(Console.ReadLine());
 
-            books.Add(new Book { Title = title, Author = author, Genre = genre, Lore = lore, Rating = rating });
+            // AGGIUNTA DEI DATI
+            books.Add(new Book { Title = title, Author = author, Genre = genres, Lore = lore, Rating = rating });
         }
         public void ShowAllBooks(List<Book> books)
         {
             foreach (var book in books)
             {
-                Console.WriteLine($"\nBook Added:\nTitle: {book.Title}\nAuthor: {book.Author}\nGenre: {book.Genre}\nLore: {book.Lore}\nRating: {book.Rating}/5");
+                Console.WriteLine($"\nBook Added:\nTitle: {book.Title}\nAuthor: {book.Author}\nLore: {book.Lore}\nRating: {book.Rating}/5");
+                Console.Write("Genres: ");
+                Console.WriteLine(string.Join(", ", book.Genre));
             }
+            //foreach (var genre in genres)
+            //{
+            //    Console.Write($"{genre.ToString()} ");
+            //}
         }
         public void SortBooksBy(List<Book> books)
         {
@@ -123,7 +174,7 @@ namespace Library.Utilities
                         int customGenreToSearch = int.Parse(Console.ReadLine());
                         //string myEnumValue = Enum.GetName(typeof (Genres), customGenreToSearch);
 
-                        var customGenreSearch = books.Where(b => b.Genre == (Genres)customGenreToSearch).ToList();
+                        var customGenreSearch = books.Where(b => b.Genre.Contains((Genres)customGenreToSearch)).ToList();
                         if (customGenreSearch.Count == 0) { Console.WriteLine("Sorry, there is no book available in the selected genre"); }
                         else
                         {

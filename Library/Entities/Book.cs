@@ -11,7 +11,8 @@ namespace Library.Entities
         public string Title { get; set; }
         public string Author { get; set; }
         public string Lore { get; set; }
-        public Genres Genre { get; set; } 
+        //public Genres Genre { get; set; } 
+        public List<Genres> Genre {  get; set; }
         public int Rating { get; set; }
     }
 }
