@@ -20,3 +20,9 @@ AddBook permette all'utente di aggiungere n libri.
 
 Milestone prossima sessione:
 - Fare in modo che l'utente possa aggiungere più di un genere in un libro, quindi la mia classe "Genre" che attualmente è di tipo enum, la farò diventare una lista [COMPLETATO]
+
+Preparazione database:
+- Installazione di Docker Desktop
+- Installazione di Ubuntu (sottosistema windows linux)
+- Installazione di Microsoft SQL Server
+- Utilizzo di NuGet package manager per l'installazione del framework Entity Framework
