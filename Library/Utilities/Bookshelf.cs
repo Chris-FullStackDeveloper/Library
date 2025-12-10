@@ -5,7 +5,7 @@ namespace Library.Utilities
 {
     public class Bookshelf
     {
-        List<Genres> genres = new List<Genres>();
+        List<Genre> genres = new List<Genre>();
 
         public void AddBook(List<Book> books)
         {
@@ -46,7 +46,7 @@ namespace Library.Utilities
                 if (string.IsNullOrWhiteSpace(cleaned))
                     continue;
 
-                if (Enum.TryParse<Genres>(cleaned, true, out Genres parsed))
+                if (Enum.TryParse<Genre>(cleaned, true, out Genre parsed))
                 {
                     genres.Add(parsed);
                 }
@@ -147,7 +147,7 @@ namespace Library.Utilities
 
                         var customRatingSearch = books.Where(b => b.Rating == customRatingToSearch).ToList();
 
-                        if (customRatingSearch.Count == 0) { Console.WriteLine("Sorry, there isn't any book with that author here"); }
+                        if (customRatingSearch.Count == 0) { Console.WriteLine("Sorry, there isn't any book with that rating here"); }
 
                         foreach (var book in customRatingSearch)
                         {
@@ -174,7 +174,7 @@ namespace Library.Utilities
                         int customGenreToSearch = int.Parse(Console.ReadLine());
                         //string myEnumValue = Enum.GetName(typeof (Genres), customGenreToSearch);
 
-                        var customGenreSearch = books.Where(b => b.Genre.Contains((Genres)customGenreToSearch)).ToList();
+                        var customGenreSearch = books.Where(b => b.Genre.Contains((Genre)customGenreToSearch)).ToList();
                         if (customGenreSearch.Count == 0) { Console.WriteLine("Sorry, there is no book available in the selected genre"); }
                         else
                         {
